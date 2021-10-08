@@ -25,6 +25,10 @@ public class Pet {
     @OneToOne
     private Collar collar;
 
+    @ManyToOne
+    @JoinColumn(name = "pet_type_id")
+    private PetType petType;
+
     @Override
     public String toString() {
         return getClass().getSimpleName() + "(" +
