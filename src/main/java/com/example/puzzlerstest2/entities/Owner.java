@@ -1,15 +1,19 @@
 package com.example.puzzlerstest2.entities;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
+@NoArgsConstructor
 @Table(name = "owner")
 @Entity
-@Data
 public class Owner {
     @Id
     @Column(name = "id", nullable = false)
