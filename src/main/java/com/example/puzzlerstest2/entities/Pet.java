@@ -17,11 +17,12 @@ public class Pet {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne
+    @ManyToOne (fetch = FetchType.LAZY)
     @JoinColumn(name = "owner_id")
     private Owner owner;
 
-    @OneToOne(mappedBy = "pet")
+    @JoinColumn(name = "collar_id")
+    @OneToOne
     private Collar collar;
 
     @Override

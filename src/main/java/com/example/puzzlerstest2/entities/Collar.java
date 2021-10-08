@@ -19,8 +19,7 @@ public class Collar {
     @Column(name = "description")
     private String description;
 
-    @OneToOne(orphanRemoval = true)
-    @JoinColumn(name = "pet_id")
+    @OneToOne(mappedBy = "collar", orphanRemoval = true)
     private Pet pet;
 
     @Override
