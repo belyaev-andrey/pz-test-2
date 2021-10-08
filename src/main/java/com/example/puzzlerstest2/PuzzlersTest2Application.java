@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class PuzzlersTest2Application implements CommandLineRunner {
 
     @Autowired
-    private PetRepository petRepository;
+    private OwnerRepository ownerRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(PuzzlersTest2Application.class, args);
@@ -19,6 +19,6 @@ public class PuzzlersTest2Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        petRepository.findAll().forEach(System.out::println);
+        ownerRepository.findOwnersByPhoneNumber("11-11-11").forEach(System.out::println);
     }
 }

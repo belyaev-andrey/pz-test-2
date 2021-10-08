@@ -2,6 +2,8 @@ package com.example.puzzlerstest2.entities;
 
 import lombok.*;
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -11,7 +13,6 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 public class Owner {
     @Id
@@ -22,8 +23,11 @@ public class Owner {
     private String name;
 
     @OneToMany(mappedBy = "owner", orphanRemoval = true)
-    @ToString.Exclude
     private Set<Pet> pets;
+
+    @OneToOne
+    @JoinColumn(name = "phone_id")
+    private Phone phone;
 
     @Override
     public boolean equals(Object o) {
@@ -36,5 +40,12 @@ public class Owner {
     @Override
     public int hashCode() {
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "(" +
+                "id = " + id + ", " +
+                "name = " + name + ")";
     }
 }
