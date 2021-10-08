@@ -11,8 +11,8 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
+@NamedQuery(name = "owners-with-pets", query = "select ow from Owner ow left join fetch ow.pets")
 public class Owner {
     @Id
     @Column(name = "id", nullable = false)
@@ -22,7 +22,6 @@ public class Owner {
     private String name;
 
     @OneToMany(mappedBy = "owner", orphanRemoval = true)
-    @ToString.Exclude
     private Set<Pet> pets;
 
     @Override
@@ -36,5 +35,12 @@ public class Owner {
     @Override
     public int hashCode() {
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "(" +
+                "id = " + id + ", " +
+                "name = " + name + ")";
     }
 }

@@ -1,7 +1,8 @@
 package com.example.puzzlerstest2;
 
+import com.example.puzzlerstest2.entities.Owner;
 import com.example.puzzlerstest2.repositories.OwnerRepository;
-import com.example.puzzlerstest2.repositories.PetRepository;
+import com.example.puzzlerstest2.services.OwnerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,7 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class PuzzlersTest2Application implements CommandLineRunner {
 
     @Autowired
-    private PetRepository petRepository;
+    private OwnerService ownerService;
 
     public static void main(String[] args) {
         SpringApplication.run(PuzzlersTest2Application.class, args);
@@ -19,6 +20,7 @@ public class PuzzlersTest2Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        petRepository.findAll().forEach(System.out::println);
+        Owner owner = ownerService.getOwnerOnly(1L);
+        System.out.println(owner);
     }
 }
