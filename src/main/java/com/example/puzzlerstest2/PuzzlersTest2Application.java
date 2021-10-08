@@ -1,5 +1,6 @@
 package com.example.puzzlerstest2;
 
+import com.example.puzzlerstest2.entities.Owner;
 import com.example.puzzlerstest2.repositories.OwnerRepository;
 import com.example.puzzlerstest2.repositories.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class PuzzlersTest2Application implements CommandLineRunner {
 
     @Autowired
-    private PetRepository petRepository;
+    private OwnerRepository ownerRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(PuzzlersTest2Application.class, args);
@@ -19,6 +20,11 @@ public class PuzzlersTest2Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        petRepository.findAll().forEach(System.out::println);
+        Owner owner = ownerRepository.findById(1L).orElseThrow();
+        owner.setName("Johnny Doe "+System.nanoTime());
+        ownerRepository.save(owner);
+
+
+
     }
 }

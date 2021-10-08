@@ -11,7 +11,6 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 public class Owner {
     @Id
@@ -21,9 +20,11 @@ public class Owner {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(mappedBy = "owner", orphanRemoval = true)
-    @ToString.Exclude
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.MERGE)
     private Set<Pet> pets;
+
+    @OneToMany(mappedBy = "owner", cascade = CascadeType.MERGE)
+    private Set<Address> addresses;
 
     @Override
     public boolean equals(Object o) {
@@ -36,5 +37,12 @@ public class Owner {
     @Override
     public int hashCode() {
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "(" +
+                "id = " + id + ", " +
+                "name = " + name + ")";
     }
 }
