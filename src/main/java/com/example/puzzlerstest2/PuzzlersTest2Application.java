@@ -19,6 +19,9 @@ public class PuzzlersTest2Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        petRepository.findAll().forEach(System.out::println);
+        petRepository.findAll().forEach(pet -> {
+            System.out.println(pet);
+            System.out.println(pet.getOwner());
+        });
     }
 }

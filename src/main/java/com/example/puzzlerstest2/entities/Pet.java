@@ -9,6 +9,12 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
+@NamedEntityGraphs({
+        @NamedEntityGraph(
+                name = "pet-with-owner",
+                attributeNodes = {@NamedAttributeNode("owner")}
+        )
+})
 public class Pet {
     @Id
     @Column(name = "id", nullable = false)
